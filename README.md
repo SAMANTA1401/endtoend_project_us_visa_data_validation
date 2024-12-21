@@ -10,5 +10,6 @@
     >> constants 
     >> arifact-entity
     >> config-entity
-    >> data acccess
-    
+    >> mongodb connection - configuration
+    >> s3 connection - configuration
+    >> data acccess mongodb connection

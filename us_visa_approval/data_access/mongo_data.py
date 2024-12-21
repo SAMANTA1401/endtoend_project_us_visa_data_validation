@@ -1,6 +1,6 @@
 from us_visa_approval.configuration.mongo_db_connection import MongoDBClient
-from us_visa.constants import DATABASE_NAME
-from us_visa.exception import USvisaException
+from us_visa_approval.constants import DATABASE_NAME
+from us_visa_approval.exception import USvisaException
 import pandas as pd
 import sys
 from typing import Optional
