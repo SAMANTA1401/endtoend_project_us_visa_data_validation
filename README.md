@@ -21,3 +21,5 @@
     >> model pusher -component
     >> training pipeline -pipeline
     >> prediction pipeline - pipeline
+    >> main.py
+    >> app.py
