@@ -14,6 +14,7 @@
     >> s3 connection - configuration
     >> data acccess mongodb connection
     >> data ingestion -component
+    >> schema.yaml - config
     >> data validation -component
     >> data transformation -component
     >> model trainning -component
@@ -23,3 +24,7 @@
     >> prediction pipeline - pipeline
     >> main.py
     >> app.py
+    >> index.html - templates
+    >> style.css - static
+    >> dockerfile 
+    >> 
