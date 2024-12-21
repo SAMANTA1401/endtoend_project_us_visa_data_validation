@@ -1,11 +1,11 @@
 import sys
 
 from us_visa_approval.cloud_storage.aws_s3 import SimpleStorageService
-from us_visa.exception import USvisaException
-from us_visa.logger import logging
-from us_visa.entity.artifact_entity import ModelPusherArtifact, ModelEvaluationArtifact
-from us_visa.entity.config_entity import ModelPusherConfig
-from us_visa.entity.s3_estimator import USvisaEstimator
+from us_visa_approval.exception import USvisaException
+from us_visa_approval.logger import logging
+from us_visa_approval.entity.artifact_entity import ModelPusherArtifact, ModelEvaluationArtifact
+from us_visa_approval.entity.config_entity import ModelPusherConfig
+from us_visa_approval.entity.s3_estimator import USvisaEstimator
 
 
 class ModelPusher:
