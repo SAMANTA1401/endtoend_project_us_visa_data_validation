@@ -18,4 +18,4 @@
     >> data transformation -component
     >> model trainning -component
     >> cloud storage -component
-    >> 
+    >> model pusher -component
