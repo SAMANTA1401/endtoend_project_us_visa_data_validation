@@ -16,4 +16,5 @@
     >> data ingestion -component
     >> data validation -component
     >> data transformation -component
+    >> model trainning -component
     >> 
