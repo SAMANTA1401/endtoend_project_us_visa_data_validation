@@ -19,3 +19,5 @@
     >> model trainning -component
     >> cloud storage -component
     >> model pusher -component
+    >> training pipeline -pipeline
+    >> prediction pipeline - pipeline
