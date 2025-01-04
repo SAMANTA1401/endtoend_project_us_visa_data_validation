@@ -8,7 +8,9 @@ from us_visa_approval.constants import DATABASE_NAME, MONGODB_URL_KEY
 import pymongo
 import certifi
 
-ca = certifi.where()
+ca = certifi.where() #Certifi is a Python package that provides a set of trusted certificates, which can be 
+# used to verify the identity of websites and other servers. The package is designed to be used with the 
+# requests library, but it can also be used with other libraries and frameworks.
 
 class MongoDBClient:
     """

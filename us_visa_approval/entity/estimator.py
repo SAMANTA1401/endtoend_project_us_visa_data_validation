@@ -13,10 +13,44 @@ class TargetValueMapping:
         self.Certified:int = 0
         self.Denied:int = 1
     def _asdict(self):
-        return self.__dict__
+        return self.__dict__ # inbuild method
     def reverse_mapping(self):
         mapping_response = self._asdict()
         return dict(zip(mapping_response.values(),mapping_response.keys()))
+    
+
+# The __init__ method is a special method that is called when an object of the class is instantiated.
+# Within the __init__ method, the class defines two instance variables: Certified and Denied, which are 
+# initialized with integer values 0 and 1, respectively.
+# The _asdict method returns a dictionary representation of the object's attributes.
+
+# The self.__dict__ attribute is a dictionary that contains the object's attributes and their values.
+
+# The reverse_mapping method returns a reversed mapping of the object's attributes.
+# Within the method, the _asdict method is called to get a dictionary representation of the object's attributes.
+# The zip function is used to swap the keys and values of the dictionary, effectively reversing the mapping.
+# The dict function is used to convert the zipped values back into a dictionary.
+
+
+# class TargetValueMapping:
+#     def __init__(self):
+#         self.Certified = 0
+#         self.Denied = 1
+
+#     def _asdict(self):
+#         return self.__dict__
+# target_feature_train_df = pd.DataFrame({
+#     'target': ['Certified', 'Denied', 'Certified']
+# })
+# target_feature_train_df = target_feature_train_df.replace(
+#     TargetValueMapping()._asdict()
+# )
+# print(target_feature_train_df)
+
+#    target
+#        0
+#        1
+#        0
     
 
 
@@ -52,6 +86,4 @@ class USvisaModel:
     def __repr__(self):
         return f"{type(self.trained_model_object).__name__}()"
 
-    def __str__(self):
-        return f"{type(self.trained_model_object).__name__}()"
     

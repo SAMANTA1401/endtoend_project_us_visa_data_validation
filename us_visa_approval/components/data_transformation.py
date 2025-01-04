@@ -32,8 +32,43 @@ class DataTransformation:
             self._schema_config = read_yaml_file(file_path=SCHEMA_FILE_PATH)
         except Exception as e:
             raise USvisaException(e, sys)
+        
+        #Single Leading Underscore (_)
+        # A single leading underscore is a convention used to indicate that an attribute or method is 
+        # intended to be private. This means that it should not be accessed directly from outside the class.
+        # print(obj._private_attribute)  # This works, but it's not recommended
+        # Double Leading Underscore (__)
+        # A double leading underscore is used to invoke name mangling, which makes it more difficult to access 
+        # the attribute or method from outside the class.
+        # This raises an AttributeError
+        # However, you can still access the attribute or method using its mangled name
+        # class MyClass:
+        # print(obj._MyClass__private_attribute)
+        # Single Trailing Underscore (_)
+        # A single trailing underscore is sometimes used to avoid naming conflicts with Python keywords.
+        # x = 10  # global variable
+        # def my_function():
+        #     print(x)  # prints 10
+        # my_function()
+        #     print(x)  # prints 10
+        # x = 10  # global variable
+        # def my_function():
+        #     global x
+        #     x = 20  # modifies the global variable
+        #     print(x)  # prints 20
+        # my_function()
+        #     print(x)  # prints 20
+        # def outer_function():
+        #     x = 10
+        #     def inner_function():
+        #         nonlocal x
+        #         x = 20
+        #         print(x)  # prints 20
+        #     inner_function()
+        #     print(x)  # prints 20
+        # outer_function()
 
-    @staticmethod
+    @staticmethod # it is won methods of that class DataTransformation
     def read_data(file_path) -> pd.DataFrame:
         try:
             return pd.read_csv(file_path)
@@ -104,7 +139,9 @@ class DataTransformation:
                 logging.info("Starting data transformation")
                 preprocessor = self.get_data_transformer_object()
                 logging.info("Got the preprocessor object")
+                
 
+                # using static method
                 train_df = DataTransformation.read_data(file_path=self.data_ingestion_artifact.trained_file_path)
                 test_df = DataTransformation.read_data(file_path=self.data_ingestion_artifact.test_file_path)
 
@@ -126,6 +163,15 @@ class DataTransformation:
                 target_feature_train_df = target_feature_train_df.replace(
                     TargetValueMapping()._asdict()
                 )
+
+                #TargetValueMapping()._asdict(): This is creating an instance of the TargetValueMapping class 
+                # and calling its _asdict method to get a dictionary representation of the class's attributes.
+                # target_feature_train_df.replace(...): This is calling the replace method on the 
+                # target_feature_train_df DataFrame, passing in the dictionary obtained in step 1.
+                # What's happening in the replace method
+                # The replace method is replacing values in the DataFrame with new values based on the 
+                # dictionary. The keys in the dictionary are the original values, and the values in the 
+                # dictionary are the new values.
 
 
                 input_feature_test_df = test_df.drop(columns=[TARGET_COLUMN], axis=1)
@@ -164,6 +210,15 @@ class DataTransformation:
                 logging.info("Applying SMOTEENN on Training dataset")
 
                 smt = SMOTEENN(sampling_strategy="minority")
+                
+                #MOTE (Synthetic Minority Over-sampling Technique): This technique generates new synthetic 
+                # samples from the minority class by interpolating between existing minority class samples.
+                # ENN (Edited Nearest Neighbours): This technique removes samples from the majority class that 
+                # are misclassified by a nearest neighbours classifier.
+                # Parameters
+                # In this specific instance, the SMOTEENN class is initialized with the following parameter:
+                # sampling_strategy="minority": This parameter specifies that the resampling should be focused 
+                # on the minority class.
 
                 input_feature_train_final, target_feature_train_final = smt.fit_resample(
                     input_feature_train_arr, target_feature_train_df
@@ -206,7 +261,7 @@ class DataTransformation:
                 )
                 return data_transformation_artifact
             else:
-                raise Exception(self.data_validation_artifact.message)
+                raise Exception(self.data_validation_artifact.message) # check data validation configuration
 
         except Exception as e:
             raise USvisaException(e, sys) from e

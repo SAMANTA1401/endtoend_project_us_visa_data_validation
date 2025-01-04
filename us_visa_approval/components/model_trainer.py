@@ -37,6 +37,15 @@ class ModelTrainer:
             logging.info("Using neuro_mf to get best model object and report")
             model_factory = ModelFactory(model_config_path=self.model_trainer_config.model_config_file_path)
             
+            # What is a Model Factory?
+            # A Model Factory is a class that encapsulates the creation and management of machine learning 
+            # models. It provides a way to decouple the model creation process from the rest of the application, making it easier to switch between different models or model configurations.
+            # Parameters
+            # In this specific instance, the ModelFactory class is initialized with the following parameter:
+            # model_config_path=self.model_trainer_config.model_config_file_path: This parameter specifies the 
+            # path to the model configuration file, which contains the hyperparameters and other settings for 
+            # the model.
+            
             x_train, y_train, x_test, y_test = train[:, :-1], train[:, -1], test[:, :-1], test[:, -1]
 
             best_model_detail = model_factory.get_best_model(

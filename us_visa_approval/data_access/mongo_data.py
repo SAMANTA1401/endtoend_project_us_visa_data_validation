@@ -33,10 +33,11 @@ class USvisaData:
             else:
                 collection = self.mongo_client[database_name][collection_name]
 
-            df = pd.DataFrame(list(collection.find()))
+            df = pd.DataFrame(list(collection.find())) # fine object in mongo database as list format and convert
+            # to dataframe
             if "_id" in df.columns.to_list():
-                df = df.drop(columns=["_id"], axis=1)
-            df.replace({"na":np.nan},inplace=True)
+                df = df.drop(columns=["_id"], axis=1) # drop id if exists
+            df.replace({"na":np.nan},inplace=True) # replace na values to numpy nan
             return df
         except Exception as e:
             raise USvisaException(e,sys)
